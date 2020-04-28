@@ -1,30 +1,16 @@
 
   <ion-content class="ion-padding" >
-    <ion-grid class="ion-margin-top">
+    <ion-grid style="margin-top: 60px;">
       <ion-row>
+
         <ion-col>
           <div>
             <div *ngIf="isMale; then thenBlock else elseBlock"></div>
-            <ng-template #thenBlock>Monsieur</ng-template>
-            <ng-template #elseBlock>Madame</ng-template>
-            <p> {{ name }} </p>
+            <ng-template #thenBlock>Monsieur {{ name }}</ng-template>
+            <ng-template #elseBlock>Madame {{ name }}</ng-template>
           </div>
         </ion-col>
-        <ion-col>
-          <div>
-            2 of 3
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-            3 of 3
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-            3 of 3
-          </div>
-        </ion-col>
+        
       </ion-row>
     </ion-grid>
   </ion-content>

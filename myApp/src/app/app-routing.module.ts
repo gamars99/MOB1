@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'cagettes',
+    loadChildren: () => import('./cagettes/cagettes.module').then( m => m.CagettesPageModule)
+  },
 ];
 
 @NgModule({
