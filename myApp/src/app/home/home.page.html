@@ -1,16 +1,13 @@
-<ion-app>
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Header</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <ion-content class="ion-padding">
-    <ion-grid>
+  <ion-content class="ion-padding" >
+    <ion-grid class="ion-margin-top">
       <ion-row>
         <ion-col>
           <div>
-            1 of 3
+            <div *ngIf="isMale; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>Monsieur</ng-template>
+            <ng-template #elseBlock>Madame</ng-template>
+            <p> {{ name }} </p>
           </div>
         </ion-col>
         <ion-col>
@@ -32,9 +29,3 @@
     </ion-grid>
   </ion-content>
 
-  <ion-footer>
-    <ion-toolbar>
-      <ion-title>Footer</ion-title>
-    </ion-toolbar>
-  </ion-footer>
-</ion-app>
