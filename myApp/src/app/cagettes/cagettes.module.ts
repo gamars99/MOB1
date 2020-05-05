@@ -17,4 +17,12 @@ import { CagettesPage } from './cagettes.page';
   ],
   declarations: [CagettesPage]
 })
-export class CagettesPageModule {}
+export class CagettesPageModule {
+
+  filtre = 0;
+
+  radioGroupChange(value) {
+    this.filtre = value;
+    //console.log(this.filtre);
+  }
+}

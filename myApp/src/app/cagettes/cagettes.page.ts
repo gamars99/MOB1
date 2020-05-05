@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class CagettesPage {
 
   jsonData: any;
+  jsonDatafiltre: any;
 
   constructor() {
     this.jsonData = [
@@ -148,6 +149,18 @@ export class CagettesPage {
         "created_at": "2020-04-30T10:15:32.000000Z",
         "updated_at": "2020-04-30T10:15:32.000000Z"
       }
-    ];
+    ];    
+    this.jsonDatafiltre = this.jsonData;
    }
+
+  filtre(value) {
+    var filtre = this.jsonData.filter(element => element.current == value);
+    this.jsonDatafiltre = filtre;
+  }
+
+  all(){
+    this.jsonDatafiltre = this.jsonData;
+  }
+
+  
 }
