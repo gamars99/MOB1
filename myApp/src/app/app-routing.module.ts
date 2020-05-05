@@ -15,6 +15,14 @@ const routes: Routes = [
     path: 'cagettes',
     loadChildren: () => import('./cagettes/cagettes.module').then( m => m.CagettesPageModule)
   },
+  {
+    path: 'profil',
+    loadChildren: () => import('./profil/profil.module').then( m => m.ProfilPageModule)
+  },
+  {
+    path: 'panier',
+    loadChildren: () => import('./panier/panier.module').then( m => m.PanierPageModule)
+  },
 ];
 
 @NgModule({

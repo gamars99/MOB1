@@ -1,0 +1,52 @@
+  <ion-content class="ion-padding" >
+    <ion-grid style="margin-top: 60px;">
+
+        <!--<ion-card *ngFor="let data of Datafiltre">-->
+        <ion-card>
+        
+        <ion-card-header>
+          <ion-row>
+            <ion-col size=2>
+              <img src="https://media.lactualite.com/2014/08/banane.jpg">
+            </ion-col>
+
+            <ion-col size="9">
+              
+                <!-- name -->
+                <ion-card-title> name {{data.name}}</ion-card-title>
+              
+            </ion-col>
+
+            <ion-col size=1>
+              <ion-icon name="trash"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-row>
+            <ion-col size="8">
+              <!-- price -->
+              <ion-card-subtitle>
+                <ion-row>
+                  <ion-icon name="remove"></ion-icon>
+                  <p>12</p>
+                  <ion-icon name="add"></ion-icon>
+                </ion-row>
+              </ion-card-subtitle> 
+            </ion-col>
+
+            <ion-col size="4">
+              <!-- price -->
+              <ion-card-subtitle>3.50.-</ion-card-subtitle>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+
+        </ion-card>
+
+        <h4>Total : 3.50.-</h4>
+
+    </ion-grid>
+  </ion-content>
+
