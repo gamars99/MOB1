@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataProvider } from '../providers/data';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cagettes',
@@ -9,11 +10,15 @@ import { DataProvider } from '../providers/data';
 export class CagettesPage {
 
   Datafiltre: any;
-  Datas = new DataProvider;
+  private Datas: DataProvider;
 
-  constructor() { 
+  constructor(private router : Router, dataprovider: DataProvider) { 
+    this.Datas = dataprovider
     this.Datafiltre = this.Datas.stock
    }
+
+  ngOnInit() {
+  }
 
   filtre(value) {
     var filtre = this.Datas.stock.filter(element => element.current == value);
@@ -22,6 +27,11 @@ export class CagettesPage {
 
   all(){
     this.Datafiltre = this.Datas.stock;
+  }
+
+  showDetails(v){
+    //console.log(v);
+    this.router.navigateByUrl("details/",v);
   }
 
   

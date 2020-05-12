@@ -1,0 +1,52 @@
+<ion-content class="ion-padding" >
+  <ion-grid style="margin-top: 60px;">
+
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="cagettes"></ion-back-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    
+    <ion-card>  
+      <ion-row >
+        <ion-col size="8"> 
+          {{ value.id }}
+          <ion-card-header>
+            <!-- name -->
+            <ion-card-title>{{value.name}}</ion-card-title>
+          </ion-card-header>
+        </ion-col>
+        <ion-col size="4">
+          <img [src]="value.picture">
+        </ion-col>
+      </ion-row>
+
+      <ion-card-header>
+        <!-- price -->
+        <ion-card-subtitle>CHF {{ value.price }}0.-</ion-card-subtitle>
+      </ion-card-header>
+
+      <!-- details -->
+      <ion-card-content>
+        <p>{{value.details}}</p>
+      </ion-card-content> 
+
+      <!-- suppliers -->
+      <ion-card-content>
+        <ion-list *ngFor="let supplier of value.suppliers">
+          <p>{{ supplier.company_name }} : {{ supplier.city }}</p>
+        </ion-list>
+      </ion-card-content>
+
+      <!-- Stock -->
+      <ion-card-content>
+        Il reste {{value.stock}} {{ value.unit }}
+      </ion-card-content>
+    </ion-card>
+
+       
+  </ion-grid>
+</ion-content>
+

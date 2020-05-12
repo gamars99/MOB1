@@ -13,41 +13,29 @@
         </ion-item>
       </ion-radio-group>
 
-        <ion-card *ngFor="let data of Datafiltre">         
-          <ion-row>
+        <ion-card *ngFor="let data of Datafiltre" (click)="showDetails(data)">         
+          <ion-row >
             <ion-col size="8">
-              {{ data.id }}
-              <ion-card-header>
                 <!-- name -->
-                <ion-card-title>{{data.name}}</ion-card-title>
-              </ion-card-header>
+                <h5>{{data.name}}</h5>
             </ion-col>
             <ion-col size="4">
-              <img [src]="data.picture">
+              <img [src]="data.picture" >
             </ion-col>
           </ion-row>
+          <ion-row >
+            <ion-col>          
+              <!-- price -->
+              <ion-card-subtitle>CHF {{ data.price }}0.-</ion-card-subtitle>
+            </ion-col>
+          </ion-row >
 
-          <ion-card-header>
-            <!-- price -->
-            <ion-card-subtitle>CHF {{ data.price }}0.-</ion-card-subtitle>
-          </ion-card-header>
-
-          <!-- details -->
-          <ion-card-content>
-            <p>{{data.details}}</p>
-          </ion-card-content> 
-
-          <!-- suppliers -->
-          <ion-card-content>
-            <ion-list *ngFor="let supplier of data.suppliers">
-              <p>{{ supplier.company_name }} : {{ supplier.city }}</p>
-            </ion-list>
-          </ion-card-content>
-
-          <!-- Stock -->
-          <ion-card-content>
-            Il reste {{data.stock}} {{ data.unit }}
-          </ion-card-content>
+          <ion-row >
+            <ion-col> 
+              <!-- Stock -->
+                Il reste {{data.stock}} {{ data.unit }}
+            </ion-col>
+          </ion-row >
         </ion-card>
 
     </ion-grid>
