@@ -19,7 +19,7 @@ export class CagettesPage {
    }
 
   ngOnInit() {
-    this.Datafiltre = this.Datas.loadFromAPI().stock;
+    this.Datafiltre = this.Datas.loadFromAPI();
   }
 
   filtre(value) {
