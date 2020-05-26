@@ -19,7 +19,7 @@
           </ion-card-header>
         </ion-col>
         <ion-col size="4">
-          <img src="http://127.0.0.1:8000/storage/picture/{{ value.picture }}">
+          <img src="http://127.0.0.1:8000/storage/pictures/{{ value.picture }}">
         </ion-col>
       </ion-row>
 
@@ -47,6 +47,7 @@
       
       <ion-card-content>
         <ion-button (click)="store()" slot="end" size="small">Ajouté</ion-button>
+        <p>Mise à jour <ion-datetime displayFormat="DD.MM.YYYY à HH:mm" value="{{value.updated_at}}" disabled display-timezone="utc"></ion-datetime></p>
       </ion-card-content>
     </ion-card>
 

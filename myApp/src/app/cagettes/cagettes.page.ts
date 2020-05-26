@@ -32,7 +32,6 @@ export class CagettesPage {
   }
 
   showDetails(v){
-    //console.log(v);
     this.router.navigateByUrl("details/",v);
   }
 

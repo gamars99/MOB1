@@ -4,11 +4,10 @@
       <ion-row>
 
         <ion-col>
-          <div>
-            <div *ngIf="isMale; then thenBlock else elseBlock"></div>
-            <ng-template #thenBlock>Monsieur {{ name }}</ng-template>
-            <ng-template #elseBlock>Madame {{ name }}</ng-template>
-          </div>
+          <ion-item>
+            <ion-label position="floating">Floating Label</ion-label>
+            <ion-input></ion-input>
+          </ion-item>
         </ion-col>
         
       </ion-row>

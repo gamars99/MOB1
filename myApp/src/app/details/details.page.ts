@@ -16,7 +16,6 @@ export class DetailsPage implements OnInit {
 
   ngOnInit() {
     this.value = this.route.getCurrentNavigation().extras
-    console.log(this.value)
   }
 
 }
