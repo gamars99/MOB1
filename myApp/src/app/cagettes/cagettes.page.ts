@@ -8,7 +8,7 @@ import { ToastController } from '@ionic/angular';
   templateUrl: './cagettes.page.html',
   styleUrls: ['./cagettes.page.scss'],
 })
-export class CagettesPage {
+export class CagettesPage implements OnInit{
 
   Datafiltre: any;
   private Datas: DataProvider;

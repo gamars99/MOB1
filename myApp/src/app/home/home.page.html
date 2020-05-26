@@ -5,11 +5,28 @@
 
         <ion-col>
           <ion-item>
-            <ion-label position="floating">Floating Label</ion-label>
-            <ion-input></ion-input>
+            <ion-label position="floating">Nom</ion-label>
+            <ion-input type="text" [(ngModel)]="firstname"></ion-input>
           </ion-item>
+          <ion-item>
+            <ion-label position="floating">Prénom</ion-label>
+            <ion-input type="text" [(ngModel)]="lastname"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Téléphone</ion-label>
+            <ion-input type="text" [(ngModel)]="phone"></ion-input>
+          </ion-item>
+          <ion-button (click)="addUser()" size="small">Créé le compte</ion-button>
+        </ion-col>        
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Token</ion-label>
+            <ion-input type="text" [(ngModel)]="token"></ion-input>
+          </ion-item>
+          <ion-button (click)="addToken()" size="small">Appliquer le token</ion-button>
         </ion-col>
-        
       </ion-row>
     </ion-grid>
   </ion-content>
