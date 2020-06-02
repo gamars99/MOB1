@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { DataProvider } from '../providers/data';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,11 +15,15 @@ export class HomePage {
   private lastname: String ;
   private phone: String ;
   private token: String ;
+  private Datas: DataProvider;
 
-  constructor(private toaster: ToastController, private storage: Storage) {
+  constructor(private router: Router, private toaster: ToastController, private storage: Storage, dataprovider: DataProvider) {
+   this.Datas = dataprovider;
   }
 
   ngOnInit() {
+    this.Datas.loadUserFromAPI();
+    
     this.storage.get('firstname').then(getFirstname => {
      this.firstname = getFirstname;
     });
@@ -33,7 +39,7 @@ export class HomePage {
   }
 
   addUser(){
-    if(this.firstname == null || this.lastname == null || this.phone == null ){
+    if(this.firstname == null || this.lastname == null || this.phone == null || this.phone == "" || this.firstname == "" || this.lastname == ""){
       //toast
       this.toaster.create({
         message: "Champs vide, veillez recontroller votre saisie.",
@@ -46,7 +52,6 @@ export class HomePage {
       this.storage.set('firstname', this.firstname);
       this.storage.set('lastname', this.lastname);
       this.storage.set('phone', this.phone);
-      console.log(this.firstname+","+this.lastname+","+this.phone);
 
       //toast
       this.toaster.create({
@@ -59,7 +64,7 @@ export class HomePage {
   }
 
   addToken(){
-    if(this.token == null){
+    if(this.token == null || this.token == ""){
       //toast
       this.toaster.create({
         message: "Votre token est vide !",
@@ -69,6 +74,15 @@ export class HomePage {
       });
     }else{
       this.storage.set('token', this.token);
+
+      //toast
+      this.toaster.create({
+        message: "Le token a été ajouté",
+        duration: 2000,
+      }).then(toast => {
+        toast.present();
+      });
+      this.router.navigateByUrl("cagettes");
     }
   }
 

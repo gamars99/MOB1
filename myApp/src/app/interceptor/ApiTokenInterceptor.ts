@@ -7,33 +7,46 @@ import{
     HttpRequest,
 } from '@angular/common/http';
 import {from, Observable} from 'rxjs';
-import { SelectMultipleControlValueAccessor } from '@angular/forms';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class ApiTokenInterceptor implements HttpInterceptor {
     private token: String ;
-
+    
     constructor(private storage: Storage){}
 
-    async foo(){
-        this.storage.get('token').then(getToken => {
-            console.log("Token : "+getToken);
-            this.token = getToken;
-        });
-    }
-
-    intercept(req: HttpRequest<any>, next: HttpHandler,): Observable<HttpEvent<any>>
+    /*intercept(req: HttpRequest<any>, next: HttpHandler,): Observable<HttpEvent<any>>
     {
-        this.foo();
-        console.log("this.token : "+this.token);
-            req = req.clone({
-                setHeaders: {
-                    'Content-Type'  :   'application/json, charset=utf-8',
-                    Accept          :   'application/json',
-                    Authorization   :   "Bearer "+this.token,
-                },
-            });
-        console.log(req);
+        //console.log("1");
+        this.storage.get('token').then(getToken => {
+            this.token = getToken;
+            //console.log("2"); 
+        });
+        req = req.clone({
+            setHeaders: {
+                'Content-Type'  :   'application/json, charset=utf-8',
+                Accept          :   'application/json',
+                Authorization   :   "Bearer "+this.token,
+                //Authorization   :   "Bearer bLL9Kf2wcfDoZsDYGBqKJDbnkQaVzXoop2257K1Ko3pcZlI98MffywvupAti",
+            },            
+        });
+        //console.log("3");
+        //console.log("4");
         return next.handle(req);
+    }*/
+    intercept(req: HttpRequest<any>,next: HttpHandler): Observable<HttpEvent<any>>{
+      
+        return from(this.storage.get('token'))
+        .pipe(
+          switchMap(token => {
+             const headers = req.headers
+                      .set('Authorization', 'Bearer ' + token)
+                      .append('Content-Type', 'application/json');
+             const requestClone = req.clone({
+               headers 
+              });
+            return next.handle(requestClone);
+          })
+         );
     }
 }
