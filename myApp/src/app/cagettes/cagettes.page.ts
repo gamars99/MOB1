@@ -20,6 +20,7 @@ export class CagettesPage implements OnInit{
 
   ngOnInit() {
     this.Datafiltre = this.Datas.loadFromAPI();
+    console.log(this.Datafiltre)
   }
 
   filtre(value) {

@@ -3,6 +3,7 @@ import { ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { DataProvider } from '../providers/data';
 import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -17,25 +18,16 @@ export class HomePage {
   private token: String ;
   private Datas: DataProvider;
 
-  constructor(private router: Router, private toaster: ToastController, private storage: Storage, dataprovider: DataProvider) {
+  constructor(private router: Router, private toaster: ToastController, private storage: Storage, dataprovider: DataProvider, private httpClient: HttpClient) {
    this.Datas = dataprovider;
   }
 
   ngOnInit() {
     this.Datas.loadUserFromAPI();
     
-    this.storage.get('firstname').then(getFirstname => {
-     this.firstname = getFirstname;
-    });
-    this.storage.get('lastname').then(getlastname => {
-     this.lastname = getlastname;
-    }); 
-    this.storage.get('phone').then(getPhone => {
-     this.phone = getPhone;
-    }); 
     this.storage.get('token').then(getToken => {
      this.token = getToken;
-    }); 
+    });
   }
 
   addUser(){
@@ -49,9 +41,25 @@ export class HomePage {
       });
     }else{
       //create user
-      this.storage.set('firstname', this.firstname);
-      this.storage.set('lastname', this.lastname);
-      this.storage.set('phone', this.phone);
+      let httpHeaders = new HttpHeaders({
+
+      });
+      let options = {
+        headers: httpHeaders
+      };
+
+      let postData = {
+        "lastname": this.lastname,
+        "firstname": this.firstname,
+        "phonenumber": this.phone
+      }
+
+      this.httpClient.post("http://127.0.0.1:8000/api/user/apply", postData, options)
+      .subscribe(data => {
+        console.log(data['_body']);
+       }, error => {
+        console.log(error);
+      });
 
       //toast
       this.toaster.create({
