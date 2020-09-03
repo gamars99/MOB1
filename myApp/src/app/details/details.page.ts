@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { DataProvider } from '../providers/data';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-details',
@@ -11,11 +11,20 @@ export class DetailsPage implements OnInit {
 
   private value;
 
-  constructor(private route: Router) {
+  constructor(private route: Router, private toaster: ToastController) {
    }
 
   ngOnInit() {
     this.value = this.route.getCurrentNavigation().extras
+  }
+
+  store(name){
+    this.toaster.create({
+      message: "Les "+name+" ont été ajouté",
+      duration: 2000,
+    }).then(toast => {
+      toast.present();
+    })
   }
 
 }

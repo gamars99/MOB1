@@ -46,7 +46,7 @@
       </ion-card-content>
       
       <ion-card-content>
-        <ion-button (click)="store()" slot="end" size="small">Ajouté</ion-button>
+        <ion-button (click)="store(value.name)" slot="end" size="small">Ajouté</ion-button>
         <p>Mise à jour <ion-datetime displayFormat="DD.MM.YYYY à HH:mm" value="{{value.updated_at}}" disabled display-timezone="utc"></ion-datetime></p>
       </ion-card-content>
     </ion-card>
