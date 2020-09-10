@@ -68,14 +68,15 @@ export class HomePage {
       }).then(toast => {
         toast.present();
       });
+      this.router.navigateByUrl("cagettes");
     }
   }
 
   addToken(){
-    if(this.token == null || this.token == ""){
+    if(this.token == null || this.token == "" || this.token.length != 60){
       //toast
       this.toaster.create({
-        message: "Votre token est vide !",
+        message: "Votre token est vide ou invalide !",
         duration: 2000,
       }).then(toast => {
         toast.present();
