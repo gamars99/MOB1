@@ -82,16 +82,18 @@ export class HomePage {
         toast.present();
       });
     }else{
-      this.storage.set('token', this.token);
-
-      //toast
-      this.toaster.create({
-        message: "Le token a été ajouté",
-        duration: 2000,
-      }).then(toast => {
-        toast.present();
+      this.storage.set('token', this.token).then(()=> {
+        this.toaster.create({
+          message: "Le token a été ajouté",
+          duration: 2000,
+        }).then(toast => {
+          toast.present();
+        }).then(()=>{
+          console.log("JE SUIS ICI")
+          this.router.navigateByUrl("profil")
+        })
+        
       });
-      this.router.navigateByUrl("cagettes");
     }
   }
 

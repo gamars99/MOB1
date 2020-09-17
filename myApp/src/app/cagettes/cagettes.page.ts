@@ -11,25 +11,17 @@ import { ToastController } from '@ionic/angular';
 export class CagettesPage implements OnInit{
 
   Datafiltre: any;
-  private Datas: DataProvider;
 
-  constructor(private router : Router, dataprovider: DataProvider, private toaster: ToastController) {     
-    this.Datas = dataprovider  
-    this.Datafiltre = this.Datas.stock
+  constructor(private router : Router, private dataprovider: DataProvider, private toaster: ToastController) {     
+    dataprovider.loadFromAPI();
    }
 
   ngOnInit() {
-    this.Datafiltre = this.Datas.loadFromAPI();
-    console.log(this.Datafiltre)
+    
   }
 
-  filtre(value) {
-    var filtre = this.Datas.stock.filter(element => element.current == value);
-    this.Datafiltre = filtre;
-  }
-
-  all(){
-    this.Datafiltre = this.Datas.stock;
+  setFilter(v){
+    this.dataprovider.applyFilter(v);
   }
 
   showDetails(v){
