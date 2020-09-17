@@ -7,17 +7,13 @@ import { DataProvider } from '../providers/data';
   styleUrls: ['./profil.page.scss'],
 })
 export class ProfilPage implements OnInit {
-  Datafiltre: any
-  private Datas: DataProvider
 
-  constructor(dataprovider: DataProvider) {
-    this.Datas = dataprovider
-    this.Datafiltre = this.Datas.user
-    console.log(this.Datafiltre);
+  constructor(private dataprovider: DataProvider) {
+    dataprovider.loadUserFromAPI();
   }
 
   ngOnInit() {
-    console.log(this.Datafiltre);
+
   }
 
 }

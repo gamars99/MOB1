@@ -10,8 +10,6 @@ import { ToastController } from '@ionic/angular';
 })
 export class CagettesPage implements OnInit{
 
-  Datafiltre: any;
-
   constructor(private router : Router, private dataprovider: DataProvider, private toaster: ToastController) {     
     dataprovider.loadFromAPI();
    }

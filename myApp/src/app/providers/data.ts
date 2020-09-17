@@ -43,7 +43,6 @@ export class DataProvider {
       this.http.get(this.apiurl+'/me').subscribe(
         response => {
           this.user = response['data'];
-          console.log(this.user);
         },
         err => {
           console.log('API failed with code '+err.status)

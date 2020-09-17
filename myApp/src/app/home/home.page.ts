@@ -89,7 +89,6 @@ export class HomePage {
         }).then(toast => {
           toast.present();
         }).then(()=>{
-          console.log("JE SUIS ICI")
           this.router.navigateByUrl("profil")
         })
         
