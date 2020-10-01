@@ -1,35 +1,45 @@
+<ion-content class="ion-padding">
+  <ion-grid style="margin-top: 60px;">
+    <ion-row>
+      <ion-col>
 
-  <ion-content class="ion-padding" >
-    <ion-grid style="margin-top: 60px;">
-      <ion-row>
-        <!--{{ Datas.user.id }}
-        {{ Datas.user.firstname }}
-        {{ Datas.user.lastname }}-->
-        <ion-col>
-          <ion-item>
-            <ion-label position="floating">Nom</ion-label>
-            <ion-input type="text" [(ngModel)]="firstname"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="floating">Prénom</ion-label>
-            <ion-input type="text" [(ngModel)]="lastname"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="floating">Téléphone</ion-label>
-            <ion-input type="text" [(ngModel)]="phone"></ion-input>
-          </ion-item>
-          <ion-button (click)="addUser()" size="small">Créé le compte</ion-button>
-        </ion-col>        
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-item>
-            <ion-label position="floating">Token</ion-label>
-            <ion-input type="text" [(ngModel)]="token"></ion-input>
-          </ion-item>
-          <ion-button (click)="addToken()" size="small">Appliquer le token</ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-content>
+        <ion-card>
+          <ion-card-content>
+            <ion-card-subtitle>Créer un compte</ion-card-subtitle>
+            <ion-item>
+              <ion-label position="floating">Nom</ion-label>
+              <ion-input type="text" [(ngModel)]="firstname"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Prénom</ion-label>
+              <ion-input type="text" [(ngModel)]="lastname"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Téléphone</ion-label>
+              <ion-input type="text" [(ngModel)]="phone"></ion-input>
+            </ion-item>
+            <ion-button (click)="addUser()" size="small">Créé le compte</ion-button>
+          </ion-card-content>
+        </ion-card>
 
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+
+        <ion-card>
+          <ion-card-content>
+            <ion-card-subtitle>Authentifiez-Vous</ion-card-subtitle>
+            <ion-item>
+              <ion-label position="floating">Token</ion-label>
+              <ion-input type="text" [(ngModel)]="token"></ion-input>
+            </ion-item>
+            <ion-button (click)="addToken()" size="small">Appliquer le token</ion-button>
+          </ion-card-content>
+        </ion-card>
+        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
