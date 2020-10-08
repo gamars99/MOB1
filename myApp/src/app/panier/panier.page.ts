@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataProvider } from '../providers/data';
 
 @Component({
   selector: 'app-panier',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PanierPage implements OnInit {
 
-  constructor() { }
+  constructor(private dataprovider: DataProvider) {
+    dataprovider.loadFromAPI();
+   }
 
   ngOnInit() {
   }
