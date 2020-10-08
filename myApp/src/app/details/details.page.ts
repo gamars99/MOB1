@@ -18,13 +18,13 @@ export class DetailsPage implements OnInit {
     this.value = this.route.getCurrentNavigation().extras
   }
 
-  store(name){
+  /*store(name){
     this.toaster.create({
       message: "Les "+name+" ont été ajouté",
       duration: 2000,
     }).then(toast => {
       toast.present();
     })
-  }
+  }*/
 
 }
