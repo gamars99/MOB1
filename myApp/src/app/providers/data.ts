@@ -45,22 +45,11 @@ export class DataProvider {
       this.http.get(this.apiurl+'/me').subscribe(
         response => {
           this.user = response['data'];
-          this.router.navigateByUrl("profil");
         },
+        
         err => {
           console.log('API failed with code '+err.status)
-          this.router.navigateByUrl("home")
-          //toast
-          this.toaster.create({
-            message: "Votre token ne correspond à aucun utilisateur",
-            duration: 2000,
-          }).then(toast => {
-            toast.present();
-            this.storage.clear();
-          });
-
-          
-
+          this.storage.clear();
         }
       )
     })

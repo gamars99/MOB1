@@ -23,10 +23,10 @@ export class HomePage {
   }
 
   ngOnInit() {
-    this.Datas.loadUserFromAPI();
-    
+    this.Datas.loadUserFromAPI()
     this.storage.get('token').then(getToken => {
      this.token = getToken;
+     if(this.token != null)this.router.navigateByUrl("profil");
     });
   }
 
