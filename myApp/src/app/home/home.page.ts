@@ -19,14 +19,18 @@ export class HomePage {
   private Datas: DataProvider;
 
   constructor(private router: Router, private toaster: ToastController, private storage: Storage, dataprovider: DataProvider, private httpClient: HttpClient) {
-   this.Datas = dataprovider;
+   this.Datas = dataprovider
   }
 
   ngOnInit() {
-    this.Datas.loadUserFromAPI()
+    this.Datas.loadUserFromAPI().then((val) => {
+      this.Datas.user = val
+      if(val != null)this.router.navigateByUrl("profil");
+    })
+
+
     this.storage.get('token').then(getToken => {
      this.token = getToken;
-     if(this.token != null)this.router.navigateByUrl("profil");
     });
   }
 
@@ -89,7 +93,10 @@ export class HomePage {
         }).then(toast => {
           toast.present();
         }).then(()=>{
-          this.router.navigateByUrl("profil")
+          this.Datas.loadUserFromAPI().then((val) => {
+            this.Datas.user = val
+            if(val != null)this.router.navigateByUrl("profil");
+          })
         })
         
       });

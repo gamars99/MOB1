@@ -44,7 +44,7 @@ export class DataProvider {
     return new Promise<any> ( (resolve, reject) => {
       this.http.get(this.apiurl+'/me').subscribe(
         response => {
-          this.user = response['data'];
+          return resolve(response['data']);
         },
         
         err => {
