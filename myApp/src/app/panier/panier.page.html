@@ -4,9 +4,9 @@
       <ion-list>
         <ion-item>
           <ion-label>Légume</ion-label>
-          <ion-select value="brown" okText="Okay" cancelText="Dismiss">
+          <ion-select value="brown" okText="Okay" cancelText="Dismiss" (ionChange)="addVegetableBasket($event)">
             <ion-item *ngFor="let data of dataprovider.filteredStock">
-              <ion-select-option value="{{ data.name }}">{{ data.name }}</ion-select-option>
+              <ion-select-option value="{{ data.id }}">{{ data.name }}</ion-select-option>
             </ion-item>
           </ion-select>
         </ion-item>

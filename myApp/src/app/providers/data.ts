@@ -54,4 +54,15 @@ export class DataProvider {
       )
     })
   }
+
+  public find(id){
+    return new Promise<any>((resolve, reject) => {
+
+      this.stock.forEach((ved) =>{
+
+        if (ved.id == id) resolve(ved)
+      })
+      reject('Vedj # ' + id + ' not found')
+    })
+  }
 }
