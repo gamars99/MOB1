@@ -9,21 +9,24 @@ import { Storage } from '@ionic/storage';
 })
 export class PanierPage implements OnInit {
 
-public dataById = [];
+public basket = [];
 
   constructor(private dataprovider: DataProvider, private storage: Storage) {
     dataprovider.loadFromAPI();
    }
 
   ngOnInit() {
-    this.storage.get('basket', )
+    this.storage.get('basket').then(getToken => {
+      this.basket = getToken
+      console.log(this.basket);
+    })
   }
 
   addVegetableBasket($event){
     this.dataprovider.find($event.target.value).then((val) => {
-      this.dataById.push(val);
-      this.storage.set('basket', this.dataById).then();
-      console.log(this.dataById)
+      this.basket.push(val);
+      this.storage.set('basket', this.basket).then();
+      this.basket = this.basket;
     });
   }
 
