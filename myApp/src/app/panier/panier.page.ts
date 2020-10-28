@@ -9,11 +9,12 @@ import { Storage } from '@ionic/storage';
 })
 export class PanierPage implements OnInit {
 
+public listVegetable;
 public basket = [];
 public total = 0;
 
   constructor(private dataprovider: DataProvider, private storage: Storage) {
-    dataprovider.loadFromAPI();
+    dataprovider.loadFromAPI()
    }
 
   ngOnInit() {
@@ -29,13 +30,14 @@ public total = 0;
     this.storage.get('basket').then(getBasket => {
       //le local storage 'basket' existe
       if(getBasket){
+
         this.basket = getBasket
         this.basket.forEach(element => {
           this.total += element.price;
         });
+
       //le local storage 'basket' n'existe pas (le crée)
       }else{
-        
         this.storage.set('basket', this.basket).then();
       }      
     });
@@ -55,8 +57,11 @@ public total = 0;
     });
   }
 
-  test(id){
-    console.log(id);
+  emptyBasket(){
+    this.storage.set('basket', []).then((val => {
+      this.basket = val;
+      this.total = 0
+    }));
   }
 
 }
