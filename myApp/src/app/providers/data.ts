@@ -23,6 +23,7 @@ export class DataProvider {
         response => {
           this.stock = response['data'];
           this.filteredStock = this.stock;
+          return resolve(this.stock);
         },
         err => {
           console.log('API failed with code '+err.status)

@@ -5,7 +5,7 @@
         <ion-item>
           <ion-label>Légume</ion-label>
           <ion-select value="brown" okText="Okay" cancelText="Dismiss" (ionChange)="addVegetableBasket($event)">
-            <ion-item *ngFor="let data of dataprovider.filteredStock">
+            <ion-item *ngFor="let data of listVegetable">
               <ion-select-option value="{{ data.id }}">{{ data.name }}</ion-select-option>
             </ion-item>
           </ion-select>
@@ -26,7 +26,7 @@
             <h2>{{ data.name }}</h2>
             <h3>{{ data.price.toFixed(2) }}.- / {{ data.unit }}</h3>
           </ion-label>
-          <ion-input type="number" value="1" min="0.1" max="{{ data.stock }}" step="0.1"></ion-input>{{ data.unit }}
+          <ion-input type="number" value="1" min="1" max="{{ data.stock }}" step="1"></ion-input>{{ data.unit }}
           <ion-button>
             <ion-icon slot="icon-only" name="trash" (click)="test(data.id)"></ion-icon>
           </ion-button>
