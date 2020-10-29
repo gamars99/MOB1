@@ -4,6 +4,8 @@ import { Storage } from '@ionic/storage';
 import { timeStamp } from 'console';
 import { compileInjectable } from '@angular/compiler';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+import { AngularDelegate } from '@ionic/angular';
+import * as _ from 'lodash'
 
 @Component({
   selector: 'app-panier',
@@ -12,7 +14,7 @@ import { connectableObservableDescriptor } from 'rxjs/internal/observable/Connec
 })
 export class PanierPage implements OnInit {
 
-public listVegetable;
+public listVegetable = [];
 public basket = [];
 public total = 0;
 public finalarry = []
@@ -24,33 +26,32 @@ public finalarry = []
   ngOnInit() {
     this.dataprovider.loadFromAPI().then(getVegetable => {
       this.listVegetable = getVegetable;
-      this.storage.get('basket').then((val) => {
-        let test = this.compare(this.listVegetable, val)
-        console.log(test)
-      })
-    });
+      
 
-    //for total
-    this.storage.get('total').then(getTotal => {
-      //le local storage 'total' n'existe pas
-      if(!getTotal){
-        this.storage.set('total', this.total).then();
-      }
-    });
+      //for total
+      this.storage.get('total').then(getTotal => {
+        //le local storage 'total' n'existe pas
+        if(!getTotal){
+          this.storage.set('total', this.total).then();
+        }
+      });
 
-    //for basket
-    this.storage.get('basket').then(getBasket => {
-      //le local storage 'basket' existe
-      if(getBasket){
-        this.basket = getBasket
-        this.basket.forEach(element => {
-          this.total += element.price;
-        });
+      //for basket
+      this.storage.get('basket').then(getBasket => {
+        
+        //le local storage 'basket' existe
+        if(getBasket){
+          this.basket = getBasket
+          this.basket.forEach(element => {
+            this.total += element.price;
+          });
 
-      //le local storage 'basket' n'existe pas (le crée)
-      }else{
-        this.storage.set('basket', this.basket).then();
-      }      
+        //le local storage 'basket' n'existe pas (le crée)
+        }else{
+          this.storage.set('basket', this.basket).then();
+        }      
+      });
+
     });
   }
 
@@ -61,13 +62,14 @@ public finalarry = []
 
       this.storage.set('basket', this.basket).then((val) =>{
         this.basket = val;
+        this.listVegetable = this.getAvailableProduct(val)
       });
-
-      let index = this.listVegetable.indexOf(val)
-      if(index > -1){
-        this.listVegetable.splice(index,1)
-      }
     });
+  }
+
+  getAvailableProduct(val) {
+      return _.differenceBy(this.listVegetable, val)
+    
   }
 
   emptyBasket(){
@@ -75,18 +77,6 @@ public finalarry = []
       this.basket = val;
       this.total = 0
     }));
-  }
-
-  compare(arr1,arr2) {
-    arr1.forEach((e1)=>arr2.forEach((e2)=> {
-      console.log(e1)
-      console.log(e2)
-      if(e1 !== e2){
-        this.finalarry.push(e1)
-        console.log(this.finalarry)
-      }
-    }));
-    return this.finalarry;
   }
 
 }
