@@ -15,9 +15,8 @@
       <ion-list-header>
         Votre panier <ion-button (click)="emptyBasket()">Vider le panier</ion-button>
       </ion-list-header>
-      <ion-list *ngFor="let data of basket">
-        
 
+      <ion-list *ngFor="let data of basket; let i=index">
         <ion-item>
           <ion-avatar slot="start">
             <img src="http://127.0.0.1:8000/storage/pictures/{{ data.picture }}">
@@ -26,9 +25,9 @@
             <h2>{{ data.name }}</h2>
             <h3>{{ data.price.toFixed(2) }}.- / {{ data.unit }}</h3>
           </ion-label>
-          <ion-input type="number" value="1" min="1" max="{{ data.stock }}" step="1"></ion-input>{{ data.unit }}
-          <ion-button>
-            <ion-icon slot="icon-only" name="trash" (click)="test(data.id)"></ion-icon>
+          <ion-input type="number" value="1" min="1" max="{{ data.stock }}" step="1" [(ngModel)]="counter[i]" (ngModelChange)="change()"></ion-input>{{ data.unit }}
+          <ion-button (click)="deleteVegetable(data.id)">
+            <ion-icon slot="icon-only" name="trash" ></ion-icon>
           </ion-button>
         </ion-item>
       </ion-list>

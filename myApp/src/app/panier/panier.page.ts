@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataProvider } from '../providers/data';
 import { Storage } from '@ionic/storage';
-import { timeStamp } from 'console';
-import { compileInjectable } from '@angular/compiler';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
-import { AngularDelegate } from '@ionic/angular';
 import * as _ from 'lodash'
 
 @Component({
@@ -18,15 +14,15 @@ public listVegetable = [];
 public basket = [];
 public total = 0;
 public finalarry = []
+private counter = [] ;
 
   constructor(private dataprovider: DataProvider, private storage: Storage) {
-    
    }
 
   ngOnInit() {
+    
     this.dataprovider.loadFromAPI().then(getVegetable => {
       this.listVegetable = getVegetable;
-      
 
       //for total
       this.storage.get('total').then(getTotal => {
@@ -38,6 +34,7 @@ public finalarry = []
 
       //for basket
       this.storage.get('basket').then(getBasket => {
+        //this.listVegetable = this.getAvailableProduct(getBasket)
         
         //le local storage 'basket' existe
         if(getBasket){
@@ -59,10 +56,9 @@ public finalarry = []
     this.dataprovider.find($event.target.value).then((val) => {
       this.basket.push(val);
       this.total += val.price;
-
       this.storage.set('basket', this.basket).then((val) =>{
         this.basket = val;
-        this.listVegetable = this.getAvailableProduct(val)
+        //this.listVegetable = this.getAvailableProduct(val)
       });
     });
   }
@@ -77,6 +73,46 @@ public finalarry = []
       this.basket = val;
       this.total = 0
     }));
+  }
+
+  change(){
+    //for basket
+    this.storage.get('basket').then(getBasket => {
+      
+      //le local storage 'basket' existe
+      if(getBasket){
+        this.total = 0 
+        let i = 0
+        getBasket.forEach(element => {
+          this.total += element.price * this.counter[i];
+          i++
+        });
+      }
+    })
+  }
+
+  deleteVegetable(id){
+    this.storage.get('basket').then(getBasket => {
+      //le local storage 'basket' existe
+      if(getBasket){
+        let i = 0
+        getBasket.forEach(element => {
+          if(element.id == id){
+            let index = getBasket.indexOf(element)
+            if (index > -1){
+              getBasket.splice(index,1)
+            }
+          }
+          i++
+        },
+        this.basket = getBasket,
+        this.storage.set('basket', this.basket).then(() => {
+          this.change()
+        }),
+        );
+      }
+
+    })
   }
 
 }
