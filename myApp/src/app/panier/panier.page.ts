@@ -118,7 +118,6 @@ private counter = [] ;
   }
 
   validOffer(){
-      console.log(this.basket.length)
       if(this.basket.length){
         this.router.navigateByUrl("cagettes")
         //toast
