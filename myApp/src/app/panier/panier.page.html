@@ -25,14 +25,15 @@
             <h2>{{ data.name }}</h2>
             <h3>{{ data.price.toFixed(2) }}.- / {{ data.unit }}</h3>
           </ion-label>
-          <ion-input type="number" value="1" min="1" max="{{ data.stock }}" step="1" [(ngModel)]="counter[i]" (ngModelChange)="change()"></ion-input>{{ data.unit }}
+          <ion-input type="number" value="1" min="0.1" max="{{ data.stock }}" step="0.1" [(ngModel)]="counter[i]" (ngModelChange)="change()"></ion-input>{{ data.unit }}
           <ion-button (click)="deleteVegetable(data.id)">
             <ion-icon slot="icon-only" name="trash" ></ion-icon>
           </ion-button>
         </ion-item>
       </ion-list>
       
-        <h4>Total : {{ total.toFixed(2) }}.-</h4>
+      <h4>Total : {{ total.toFixed(2) }}.-</h4>
+      <ion-button (click)="validOffer()">Valider la commande</ion-button>
 
     </ion-grid>
   </ion-content>

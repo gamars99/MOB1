@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataProvider } from '../providers/data';
 import { Storage } from '@ionic/storage';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import * as _ from 'lodash'
 
 @Component({
@@ -16,7 +18,7 @@ public total = 0;
 public finalarry = []
 private counter = [] ;
 
-  constructor(private dataprovider: DataProvider, private storage: Storage) {
+  constructor(private dataprovider: DataProvider, private storage: Storage,private router: Router, private toaster: ToastController) {
    }
 
   ngOnInit() {
@@ -113,6 +115,28 @@ private counter = [] ;
       }
 
     })
+  }
+
+  validOffer(){
+      console.log(this.basket.length)
+      if(this.basket.length){
+        this.router.navigateByUrl("cagettes")
+        //toast
+        this.toaster.create({
+          message: "Votre commande a été effectué",
+          duration: 2000,
+        }).then(toast => {
+          toast.present();
+        });
+      }else{
+        //toast
+        this.toaster.create({
+          message: "Votre panier est vide",
+          duration: 2000,
+        }).then(toast => {
+          toast.present();
+        });
+      }
   }
 
 }
