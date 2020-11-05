@@ -47,7 +47,7 @@ export class DataProvider {
         response => {
           //toast
           this.toaster.create({
-            message: "Bienvenue",
+            message: "Vous êtes connecté, bienvenue !!!",
             duration: 2000,
           }).then(toast => {
             toast.present();
