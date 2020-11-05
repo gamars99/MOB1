@@ -61,18 +61,25 @@ export class HomePage {
       this.httpClient.post("http://127.0.0.1:8000/api/user/apply", postData, options)
       .subscribe(data => {
         console.log(data['_body']);
+        //toast
+        this.toaster.create({
+          message: "Bienvenue "+this.firstname+" "+this.lastname+", votre compte a bien été créé",
+          duration: 2000,
+        }).then(toast => {
+          toast.present();
+        });
+        this.router.navigateByUrl("cagettes");
        }, error => {
-        console.log(error);
+        //toast
+        this.toaster.create({
+          message: "Une erreur est survenu veuillez réessayer",
+          duration: 2000,
+        }).then(toast => {
+          toast.present();
+        });
       });
 
-      //toast
-      this.toaster.create({
-        message: "Bienvenue "+this.firstname+" "+this.lastname+", votre compte a bien été créé",
-        duration: 2000,
-      }).then(toast => {
-        toast.present();
-      });
-      this.router.navigateByUrl("cagettes");
+      
     }
   }
 
