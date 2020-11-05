@@ -94,16 +94,9 @@ export class HomePage {
       });
     }else{
       this.storage.set('token', this.token).then(()=> {
-        this.toaster.create({
-          message: "Le token a été ajouté",
-          duration: 2000,
-        }).then(toast => {
-          toast.present();
-        }).then(()=>{
           this.Datas.loadUserFromAPI().then((val) => {
             this.Datas.user = val
             if(val != null)this.router.navigateByUrl("profil");
-          })
         })
         
       });

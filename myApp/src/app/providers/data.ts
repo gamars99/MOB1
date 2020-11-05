@@ -45,11 +45,24 @@ export class DataProvider {
     return new Promise<any> ( (resolve, reject) => {
       this.http.get(this.apiurl+'/me').subscribe(
         response => {
+          //toast
+          this.toaster.create({
+            message: "Bienvenue",
+            duration: 2000,
+          }).then(toast => {
+            toast.present();
+          });
           return resolve(response['data']);
         },
         
         err => {
-          console.log('API failed with code '+err.status)
+          //toast
+          this.toaster.create({
+            message: "Votre token est vide ou invalide !",
+            duration: 2000,
+          }).then(toast => {
+            toast.present();
+          });
           this.storage.clear();
         }
       )
