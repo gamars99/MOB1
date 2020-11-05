@@ -26,6 +26,13 @@ export class DataProvider {
           return resolve(this.stock);
         },
         err => {
+          //toast
+          this.toaster.create({
+            message: "Erreur de chargement des produits, veuillez réessayer",
+            duration: 2000,
+          }).then(toast => {
+            toast.present();
+          });
           console.log('API failed with code '+err.status)
         }
       )
