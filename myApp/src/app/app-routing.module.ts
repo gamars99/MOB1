@@ -26,7 +26,11 @@ const routes: Routes = [
   {
     path: 'details/:val',
     loadChildren: () => import('./details/details.module').then( m => m.DetailsPageModule)
+  },  {
+    path: 'add-quantity',
+    loadChildren: () => import('./add-quantity/add-quantity.module').then( m => m.AddQuantityPageModule)
   },
+
 ];
 
 @NgModule({

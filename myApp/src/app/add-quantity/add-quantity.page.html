@@ -1,0 +1,18 @@
+<ion-content class="ion-padding" >
+  <ion-grid style="margin-top: 60px;">
+     
+    <ion-slides paginationType="bullets" slidesPerView="1" pager="true">
+      <ion-slide *ngFor="let value of allVegetable">
+        <ion-card>
+          <img src="http://127.0.0.1:8000/storage/pictures/{{ value.picture }}" />
+          <ion-card-header>
+            <ion-card-title>{{value.name}}</ion-card-title>
+          </ion-card-header>
+          Il reste {{ value.stock }} {{ value.unit }}
+          <!-- Il reste <ion-input type="number" value="" min="0.1" step="0.1" [(ngModel)]="counter[i]" ></ion-input> -->
+        </ion-card>
+      </ion-slide>
+    </ion-slides>  
+  </ion-grid>
+</ion-content>
+
