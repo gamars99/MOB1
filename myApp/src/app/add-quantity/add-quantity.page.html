@@ -9,7 +9,7 @@
             <ion-card-title>{{value.name}}</ion-card-title><br>
             Stock de {{ value.stock }} {{ value.unit }}
             <br>
-            Nouvelle quantité : <ion-input type="number" value="1" min="1" step="1" [(ngModel)]="counter[i]" ></ion-input>
+            Nouvelle quantité : <ion-input type="number" value="1" min="0.1" step="0.1" [(ngModel)]="counter[i]" ></ion-input>
             
             <ion-button (click)="validVegetable(value.id,counter[i] )">ok</ion-button>
           </ion-card-header>          
@@ -19,7 +19,7 @@
   </ion-grid>
   <h2>Validation du Stock</h2>
   <ion-button (click)="restart()">Recommencer</ion-button>
-  <ion-button (click)="Save()">Enregistrer</ion-button>
+  <ion-button (click)="save()">Enregistrer</ion-button>
   <p *ngFor="let data of receipt">
     {{ data.name }} : {{ data.stock }} {{ data.unit }}
   </p>
